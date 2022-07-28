@@ -16,4 +16,10 @@ RSpec.describe PaymentRequest, type: :model do
       expect(PaymentRequest.new(valid_attributes.except(:currency))).not_to be_valid
     end
   end
+
+  context "user id with uuid" do
+    it "is valid with valid attributes" do
+      expect(PaymentRequest.create(valid_attributes).user_id).not_to be(nil)
+    end
+  end
 end

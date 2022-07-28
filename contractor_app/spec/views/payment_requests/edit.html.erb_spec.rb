@@ -20,7 +20,7 @@ RSpec.describe "payment_requests/edit", type: :view do
 
       assert_select "textarea[name=?]", "payment_request[description]"
 
-      assert_select "div", /0/, count: 1
+      assert_select "div", /pending/, count: 1
     end
   end
 end
