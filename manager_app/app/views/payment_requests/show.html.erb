@@ -3,8 +3,10 @@
 <%= render @payment_request %>
 
 <div>
-  <%= link_to "Edit this payment request", edit_payment_request_path(@payment_request) %> |
-  <%= link_to "Back to payment requests", payment_requests_path %>
+  <%= link_to "Edit", edit_payment_request_path(@payment_request) %> |
+  <%= link_to "Back to payment requests", payment_requests_path %> 
+  <br />
+  <%= button_to "Approve", approve_payment_request_path(@payment_request), method: :patch %> 
+  <%= button_to "Reject", reject_payment_request_path(@payment_request), method: :patch %> 
 
-  <%= button_to "Destroy this payment request", @payment_request, method: :delete %>
 </div>

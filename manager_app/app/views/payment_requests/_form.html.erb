@@ -11,20 +11,20 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
+   <p>
+    <strong>User:</strong>
+    <%= payment_request.user_id %>
+  </p>
 
-  <div>
-    <%= form.label :amount, style: "display: block" %>
-    <%= form.text_field :amount %>
-  </div>
+  <p>
+    <strong>Amount:</strong>
+    <%= payment_request.amount %>
+  </p>
 
-  <div>
-    <%= form.label :currency, style: "display: block" %>
-    <%= form.text_field :currency %>
-  </div>
+  <p>
+    <strong>Currency:</strong>
+    <%= payment_request.currency %>
+  </p>
 
   <div>
     <%= form.label :description, style: "display: block" %>
@@ -33,7 +33,7 @@
 
   <div>
     <%= form.label :status, style: "display: block" %>
-    <%= form.number_field :status %>
+    <%= form.select :status, options_for_select(PaymentRequest.statuses.keys, payment_request.status) %>
   </div>
 
   <div>

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "payment_requests/show", type: :view do
   before(:each) do
@@ -17,6 +17,6 @@ RSpec.describe "payment_requests/show", type: :view do
     expect(rendered).to match(/9.99/)
     expect(rendered).to match(/Currency/)
     expect(rendered).to match(/MyText/)
-    expect(rendered).to match(/2/)
+    expect(rendered).to match(/rejected/)
   end
 end
