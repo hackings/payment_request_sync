@@ -30,4 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  data_sync:
+    error_messages:
+      publisher_missing: publisher is not provided
+      adapter_missing: adapter is not provided
