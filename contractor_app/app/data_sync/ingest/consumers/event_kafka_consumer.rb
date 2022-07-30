@@ -5,8 +5,9 @@ module Ingest
     class EventKafkaConsumer < KafkaConsumer
       def consume
         messages.each { |message|
-          pr = PaymentRequest.find_by(user_id: message[:user_id])
-          pr&.update({status: message[:status]})
+          event = Events::IngestEvent.new(message.payload)
+          handler = Ingest::EventHandlers::EventHandler.new
+          handler.handle(event)
         }
       end
 

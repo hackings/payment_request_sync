@@ -1,10 +1,12 @@
 require "rails_helper"
 describe Ingest::Consumers::EventKafkaConsumer do
-  let(:messages) { [{}, {}] }
+  let(:message){ double("message") }
+  let(:messages) { [message, message] }
   let(:payment_request) { double("payment_request") }
 
   describe "#consume" do
     before do
+      allow(message).to receive(:payload).and_return({})
       allow(payment_request).to receive(:update)
       allow(PaymentRequest).to receive(:find_by).and_return(payment_request)
       allow(subject).to receive(:messages).and_return(messages)
