@@ -9,10 +9,7 @@ module Notifications
     # Notifies producers if changes
     def notify_data_change_event
       return true unless has_updates_to_notifiable_fields?
-      Karafka.producer.produce_async(
-        topic: "contractor_requests",
-        payload: attributes.to_json
-      )
+      Resolver.emit_event_processor.handle_data_change_event(attributes)
     end
 
     def notifiable_fields
