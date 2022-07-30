@@ -1,6 +1,6 @@
 require "rails_helper"
 describe Ingest::Consumers::EventKafkaConsumer do
-  let(:message){ double("message") }
+  let(:message) { double("message") }
   let(:messages) { [message, message] }
   let(:payment_request) { double("payment_request") }
 

@@ -24,4 +24,10 @@ describe Resolver do
       expect(emit_event_processor.adapter).to eq(adapter)
     end
   end
+
+  context "when call #ingest_event_handler" do
+    it "should return #Ingest::EventHandlers::EventHandler" do
+      expect(Resolver.ingest_event_handler).to be_a(Ingest::EventHandlers::EventHandler)
+    end
+  end
 end

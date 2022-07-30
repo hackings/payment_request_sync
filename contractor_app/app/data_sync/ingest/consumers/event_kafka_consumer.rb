@@ -6,7 +6,7 @@ module Ingest
       def consume
         messages.each { |message|
           event = Events::IngestEvent.new(message.payload)
-          handler = Ingest::EventHandlers::EventHandler.new
+          handler = Resolver.ingest_event_handler
           handler.handle(event)
         }
       end
