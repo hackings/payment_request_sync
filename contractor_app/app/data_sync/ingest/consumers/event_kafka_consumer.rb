@@ -5,9 +5,7 @@ module Ingest
     class EventKafkaConsumer < KafkaConsumer
       def consume
         messages.each { |message|
-          event = Events::IngestEvent.new(message.payload)
-          handler = Resolver.ingest_event_handler
-          handler.handle(event)
+          IngestEventService.execute_call(message)
         }
       end
 

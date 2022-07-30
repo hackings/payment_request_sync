@@ -9,7 +9,7 @@ module Notifications
     # Notifies producers if changes
     def notify_data_change_event
       return true unless has_updates_to_notifiable_fields?
-      Resolver.emit_event_processor.handle_data_change_event(attributes)
+      EmitEventService.execute_call(attributes)
     end
 
     def notifiable_fields
