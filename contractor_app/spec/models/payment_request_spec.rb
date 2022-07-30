@@ -6,6 +6,9 @@ RSpec.describe PaymentRequest, type: :model do
     it "is valid with valid attributes" do
       expect(PaymentRequest.new(valid_attributes)).to be_valid
     end
+    it "should assign user id with uuid" do
+      expect(PaymentRequest.create(valid_attributes).user_id).not_to be(nil)
+    end
   end
 
   context "invalid attributes" do
@@ -17,9 +20,14 @@ RSpec.describe PaymentRequest, type: :model do
     end
   end
 
-  context "user id with uuid" do
-    it "is valid with valid attributes" do
-      expect(PaymentRequest.create(valid_attributes).user_id).not_to be(nil)
+  it_behaves_like "a change event observable" do
+    let(:valid_attributes) { {amount: 5, currency: "USD", description: "change event observable create event"} }
+    let(:new_attributes) do
+      valid_attributes.merge({description: "change event observable update event"})
     end
+    let(:non_observerable_attributes) do
+      valid_attributes.merge({created_at: Time.now})
+    end
+    subject(:payment_request) { build(:payment_request, valid_attributes) }
   end
 end
