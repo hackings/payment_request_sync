@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+set -vx
+
+cd contractor_app
+bundle install
+bundle exec rake db:create
+bundle exec rake db:migrate
+bundle exec rails s &
+bundle exec karafka server &
+
+cd ../manager_app
+bundle install
+bundle exec rake db:create
+bundle exec rake db:migrate
+bundle exec rails s -p3001 &
+bundle exec karafka server &
+
+# Do any other automated setup that you need to do here
